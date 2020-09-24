@@ -1,8 +1,12 @@
 import mouse 
 import keyboard
 import tkinter as tk
-from PyQt5 import QtGui
+# from PyQt5 import QtGui
 
+class action:
+    def __init__(self,name,record):
+        self.name=name
+        self.content=content
 
 # events = []
 # mouse.hook(events.append)
@@ -13,16 +17,18 @@ from PyQt5 import QtGui
 def delete_selected(index):
     pass
 
-def play_selected():
+def play_selected(index):
     pass
 
-def add_record(events):
-    pass
+def add_action(newName,newRecord):
+    if newName!='':
+        pass
 
 if __name__ == '__main__':
     records=[]
     recordButton='r'
-    
+    lastRecord=''
+    selectedIndex=-1
     
     win = tk.Tk()
     # win.title("welcome to the mouse control program")
@@ -45,13 +51,13 @@ if __name__ == '__main__':
     # recordsLB.insert(6, "Ruby")    
 
     # recordsLB.delete(0,1)
-    recordsLB.grid(row=1)
+    recordsLB.grid(row=1,column=0)
 
-    deleteSelectedB=tk.Button(win,text="delete selected", command=delete_selected)
+    deleteSelectedB=tk.Button(win,text="delete selected", command=delete_selected(recordsLB.curselection()))
     # deleteSelectedB.pack()
     deleteSelectedB.grid(row=2,column=0)
 
-    playSelecyedB=tk.Button(win,text="play selected", command=play_selected)
+    playSelecyedB=tk.Button(win,text="play selected", command=play_selected(recordsLB.curselection()))
     # playSelecyedB.pack()
     playSelecyedB.grid(row=1,column=1)
 
@@ -60,11 +66,11 @@ if __name__ == '__main__':
 
     clickToRecordL=tk.Label(text="click r to record").grid(row=4,column=0, sticky='w')
 
-    addRecordB=tk.Button(win,text='add record', command=add_record).grid(row=4,sticky='e')
-
+    addActionB=tk.Button(win,text='add action', command=add_action('a','a')).grid(row=4,sticky='e')
+    # selectedIndex=recordsLB.activate('index')
+    # tk.Messagebox.showinfo(title=selectedIndex)
     win.mainloop()
-
-
+    
 
 
 
