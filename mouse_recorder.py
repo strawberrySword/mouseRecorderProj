@@ -3,10 +3,10 @@ import keyboard
 import tkinter as tk
 # from PyQt5 import QtGui
 
-class Action:
+class action:
     def __init__(self,name,record):
-        self.name=name
-        self.record=record
+        self.name = name
+        self.content = content
 
 # events = []
 # mouse.hook(events.append)
@@ -14,31 +14,37 @@ class Action:
 # mouse.unhook(events.append)
 # mouse.play(events)
 
+#region functions
+
 def delete_selected(index):
     pass
 
 def play_selected(index):
     pass
 
-def add_action(newName,currentRecord):
-    if newName!='':
-        newAction=Action(newName,currentRecord)
-        actions.append(newAction)
-        recordsLB.insert(newName)
-    else:
-        tk.showerror(title="wrong action", message="missing action name")
+def add_action(newName,newRecord):
+    if newName != '':
+        pass
+
+def record_action():
+    currentAction = []
+    mouse.hook(currentAction.append)
+    keyboard.wait("escape")
+    mouse.unhook(currentAction.append)
+    return currentAction
+
+#endregion
 
 if __name__ == '__main__':
-    actions=[]
-    recordButton='r'
-    currentRecord=''
-    selectedIndex=-1
-    newNameText=""
+    records = []
+    recordButton = 'r'
+    lastRecord = ''
+    selectedIndex = -1
     
     win = tk.Tk()
     # win.title("welcome to the mouse control program")
-    label = tk.Label(text='welcome to mouse control program')
-    label.grid(row=0)
+    label = tk.Label(text = 'welcome to mouse control program')
+    label.grid(row = 0)
 
     # position
     windowWidth = win.winfo_reqwidth()
@@ -47,7 +53,7 @@ if __name__ == '__main__':
     positionDown = int(win.winfo_screenheight()/2 - windowHeight/2)
     win.geometry("+{}+{}".format(positionRight, positionDown))
 
-    recordsLB=tk.Listbox(win)
+    recordsLB = tk.Listbox(win)
     # recordsLB.insert(1, "Python")
     # recordsLB.insert(2, "Perl")
     # recordsLB.insert(3, "C")
@@ -56,26 +62,25 @@ if __name__ == '__main__':
     # recordsLB.insert(6, "Ruby")    
 
     # recordsLB.delete(0,1)
-    recordsLB.grid(row=1,column=0)
+    recordsLB.grid(row = 1, column = 0)
 
-    deleteSelectedB=tk.Button(win,text="delete selected", command=delete_selected(recordsLB.curselection()))
+    deleteSelectedB = tk.Button(win,text="delete selected", command=delete_selected(recordsLB.curselection()))
     # deleteSelectedB.pack()
-    deleteSelectedB.grid(row=2,column=0)
+    deleteSelectedB.grid(row = 2, column = 0)
 
-    playSelecyedB=tk.Button(win,text="play selected", command=play_selected(recordsLB.curselection()))
+    playSelecyedB=tk.Button(win, text = "play selected", command = play_selected(recordsLB.curselection()))
     # playSelecyedB.pack()
-    playSelecyedB.grid(row=1,column=1)
+    playSelecyedB.grid(row = 1, column = 1)
 
-    newNameL=tk.Label(win, text='new name: ').grid(row=3, column=0, sticky='w')
-    newNameE=tk.Entry(win).grid(row=3,column=0,sticky='e')    
+    newNameL=tk.Label(win, text = 'new name: ').grid(row = 3, column = 0, sticky = 'w')
+    newNameE=tk.Entry(win).grid(row = 3,column = 0,sticky = 'e')
 
-    clickToRecordL=tk.Label(text="click r to record").grid(row=4,column=0, sticky='w')
+    clickToRecordL = tk.Button(win, text = "click to record", command = record_action).grid(row = 4, column = 0, sticky = 'w')
 
-    addActionB=tk.Button(win,text='add action', command=add_action(newNameText,currentRecord)).grid(row=4,sticky='e')
+    addActionB = tk.Button(win, text = 'add action', command = add_action('a', 'a')).grid(row = 4, sticky = 'e')
     # selectedIndex=recordsLB.activate('index')
     # tk.Messagebox.showinfo(title=selectedIndex)
     win.mainloop()
-    newNameText=newNameE.get()
     
 
 
