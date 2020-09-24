@@ -3,10 +3,10 @@ import keyboard
 import tkinter as tk
 # from PyQt5 import QtGui
 
-class action:
+class Action:
     def __init__(self,name,record):
         self.name=name
-        self.content=content
+        self.record=record
 
 # events = []
 # mouse.hook(events.append)
@@ -22,10 +22,13 @@ def play_selected(index):
 
 def add_action(newName,newRecord):
     if newName!='':
-        pass
+        newAction=Action(newName,newRecord)
+        actions.append(newAction)
+    else:
+
 
 if __name__ == '__main__':
-    records=[]
+    actions=[]
     recordButton='r'
     lastRecord=''
     selectedIndex=-1
