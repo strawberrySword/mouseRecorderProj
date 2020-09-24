@@ -20,7 +20,7 @@ def delete_selected(index):
 def play_selected(index):
     pass
 
-def add_action(newName):
+def add_action(newName,currentRecord):
     if newName!='':
         newAction=Action(newName,currentRecord)
         actions.append(newAction)
@@ -33,6 +33,7 @@ if __name__ == '__main__':
     recordButton='r'
     currentRecord=''
     selectedIndex=-1
+    newNameText=""
     
     win = tk.Tk()
     # win.title("welcome to the mouse control program")
@@ -70,10 +71,11 @@ if __name__ == '__main__':
 
     clickToRecordL=tk.Label(text="click r to record").grid(row=4,column=0, sticky='w')
 
-    addActionB=tk.Button(win,text='add action', command=add_action(newNameE.get(),currentRecord)).grid(row=4,sticky='e')
+    addActionB=tk.Button(win,text='add action', command=add_action(newNameText,currentRecord)).grid(row=4,sticky='e')
     # selectedIndex=recordsLB.activate('index')
     # tk.Messagebox.showinfo(title=selectedIndex)
     win.mainloop()
+    newNameText=newNameE.get()
     
 
 
