@@ -20,17 +20,18 @@ def delete_selected(index):
 def play_selected(index):
     pass
 
-def add_action(newName,newRecord):
+def add_action(newName):
     if newName!='':
-        newAction=Action(newName,newRecord)
+        newAction=Action(newName,currentRecord)
         actions.append(newAction)
+        recordsLB.insert(newName)
     else:
-
+        tk.showerror(title="wrong action", message="missing action name")
 
 if __name__ == '__main__':
     actions=[]
     recordButton='r'
-    lastRecord=''
+    currentRecord=''
     selectedIndex=-1
     
     win = tk.Tk()
@@ -65,11 +66,11 @@ if __name__ == '__main__':
     playSelecyedB.grid(row=1,column=1)
 
     newNameL=tk.Label(win, text='new name: ').grid(row=3, column=0, sticky='w')
-    newNameE=tk.Entry(win).grid(row=3,column=0,sticky='e')
+    newNameE=tk.Entry(win).grid(row=3,column=0,sticky='e')    
 
     clickToRecordL=tk.Label(text="click r to record").grid(row=4,column=0, sticky='w')
 
-    addActionB=tk.Button(win,text='add action', command=add_action('a','a')).grid(row=4,sticky='e')
+    addActionB=tk.Button(win,text='add action', command=add_action(newNameE.get(),currentRecord)).grid(row=4,sticky='e')
     # selectedIndex=recordsLB.activate('index')
     # tk.Messagebox.showinfo(title=selectedIndex)
     win.mainloop()
